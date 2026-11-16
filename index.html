@@ -21,7 +21,15 @@
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 105px;
+    }
+
+    /* Keep anchor destinations clear of the sticky navigation bar. */
+    [id] {
+      scroll-margin-top: 105px;
+    }
 
     body {
       font-family: Arial, Helvetica, sans-serif;
@@ -349,6 +357,8 @@
     }
 
     @media (max-width: 850px) {
+      html { scroll-padding-top: 145px; }
+      [id] { scroll-margin-top: 145px; }
       .nav { padding: 17px 0; flex-direction: column; }
       nav { justify-content: center; gap: 15px 20px; }
       .cards { grid-template-columns: 1fr 1fr; }
@@ -356,6 +366,8 @@
     }
 
     @media (max-width: 600px) {
+      html { scroll-padding-top: 165px; }
+      [id] { scroll-margin-top: 165px; }
       .hero { padding: 75px 0; }
       .hero p { font-size: 16px; }
       .button { margin: 5px 0; }
