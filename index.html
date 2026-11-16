@@ -355,6 +355,59 @@
       font-size: 12px;
     }
 
+
+    .assessment-section { background: var(--light); }
+    .assessment-wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #FFFFFF;
+      border: 1px solid #E2E9EF;
+      border-radius: 12px;
+      padding: 32px;
+      box-shadow: 0 7px 24px rgba(16,43,70,.045);
+    }
+    .assessment-intro { margin-bottom: 22px; }
+    .assessment-list { display: grid; gap: 13px; }
+    .assessment-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 15px;
+      border: 1px solid #E3EAF0;
+      border-radius: 7px;
+      background: #FFFFFF;
+    }
+    .assessment-item input {
+      width: 19px;
+      height: 19px;
+      margin-top: 3px;
+      accent-color: var(--teal);
+      flex: 0 0 auto;
+    }
+    .assessment-item label {
+      color: var(--navy);
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .assessment-item small {
+      display: block;
+      color: #68798A;
+      font-weight: 400;
+      margin-top: 3px;
+      line-height: 1.5;
+    }
+    .assessment-result {
+      display: none;
+      margin-top: 24px;
+      padding: 22px;
+      background: #E8F4F1;
+      border-left: 4px solid var(--teal);
+      border-radius: 7px;
+    }
+    .assessment-result.visible { display: block; }
+    .assessment-result h3 { color: var(--navy); margin-bottom: 8px; }
+    .assessment-result strong { color: var(--teal); }
+
     .knowledge-card {
       border-top: 3px solid var(--gold);
     }
@@ -620,6 +673,92 @@
     </div>
   </section>
 
+
+  <section class="assessment-section" id="health-assessment">
+    <div class="container">
+      <div class="section-heading">
+        <h2>Health Insurance Coverage Assessment</h2>
+        <p>
+          Use this checklist to review important features of an existing
+          health insurance policy or identify questions to ask before choosing cover.
+        </p>
+      </div>
+
+      <div class="assessment-wrap">
+        <p class="assessment-intro">
+          Tick each point if you have checked it and understand how it applies
+          to your policy or the cover you are considering.
+        </p>
+        <div class="assessment-list">
+          <div class="assessment-item">
+            <input type="checkbox" id="hc1">
+            <label for="hc1">Coverage amount and who is covered
+              <small>I have checked the sum insured and confirmed which family members are included.</small>
+            </label>
+          </div>
+          <div class="assessment-item">
+            <input type="checkbox" id="hc2">
+            <label for="hc2">Waiting periods
+              <small>I understand the initial waiting period, specified-condition waiting periods and any applicable pre-existing disease waiting period.</small>
+            </label>
+          </div>
+          <div class="assessment-item">
+            <input type="checkbox" id="hc3">
+            <label for="hc3">Exclusions and limitations
+              <small>I have reviewed permanent exclusions, sub-limits and other restrictions relevant to the policy.</small>
+            </label>
+          </div>
+          <div class="assessment-item">
+            <input type="checkbox" id="hc4">
+            <label for="hc4">Room rent, co-payment and deductibles
+              <small>I understand whether these conditions apply and how they could affect claim payments.</small>
+            </label>
+          </div>
+          <div class="assessment-item">
+            <input type="checkbox" id="hc5">
+            <label for="hc5">Hospital network and cashless process
+              <small>I know how to check network hospitals and understand the insurer's cashless and reimbursement process.</small>
+            </label>
+          </div>
+          <div class="assessment-item">
+            <input type="checkbox" id="hc6">
+            <label for="hc6">Renewal and premium changes
+              <small>I have reviewed renewal conditions, age-related considerations and how premiums may change.</small>
+            </label>
+          </div>
+          <div class="assessment-item">
+            <input type="checkbox" id="hc7">
+            <label for="hc7">Restoration and no-claim benefits
+              <small>I understand whether these benefits are included and the conditions that apply to using them.</small>
+            </label>
+          </div>
+          <div class="assessment-item">
+            <input type="checkbox" id="hc8">
+            <label for="hc8">Employer-provided health cover
+              <small>If I rely on employer cover, I have considered what happens if I change jobs or leave employment.</small>
+            </label>
+          </div>
+        </div>
+        <div class="calculator-actions">
+          <button type="button" class="button button-primary" id="reviewHealth">Review My Checklist</button>
+          <button type="button" class="button button-outline" id="resetHealth" style="color:#102B46;border-color:#AAB8C5">Reset</button>
+        </div>
+        <div class="assessment-result" id="healthResult" aria-live="polite">
+          <h3 id="healthResultTitle">Your checklist review</h3>
+          <p id="healthResultText"></p>
+          <p style="margin-top:10px"><strong id="healthResultCount"></strong></p>
+        </div>
+        <p class="calculator-note">
+          This checklist is for general education and is not a policy evaluation,
+          medical assessment or recommendation. Policy terms vary. Always read
+          the policy wording, schedule and applicable disclosures, and seek
+          clarification from an appropriately authorised insurance professional.
+          Your selections remain in this browser and are not submitted or saved.
+        </p>
+      </div>
+    </div>
+  </section>
+
   <section id="knowledge">
     <div class="container">
       <div class="section-heading">
@@ -766,6 +905,37 @@
           ? "Based on the figures entered, this is the estimated additional cover gap. It is a starting point for discussion, not a recommended policy amount."
           : "Based on the figures entered, the estimated resources equal or exceed the simplified need. Review assumptions carefully before drawing any conclusion.";
       document.getElementById("coverResult").classList.add("visible");
+    });
+  })();
+</script>
+
+
+<script>
+  (function () {
+    const ids = ["hc1","hc2","hc3","hc4","hc5","hc6","hc7","hc8"];
+    const review = document.getElementById("reviewHealth");
+    const reset = document.getElementById("resetHealth");
+    if (!review || !reset) return;
+
+    review.addEventListener("click", function () {
+      const checked = ids.filter(id => document.getElementById(id).checked).length;
+      const remaining = ids.length - checked;
+      const result = document.getElementById("healthResult");
+      document.getElementById("healthResultCount").textContent =
+        checked + " of " + ids.length + " points reviewed";
+      document.getElementById("healthResultTitle").textContent =
+        remaining === 0 ? "You have reviewed every checklist point" : "There are points you may still want to review";
+      document.getElementById("healthResultText").textContent =
+        remaining === 0
+          ? "You have marked all checklist topics as reviewed. Make sure you have understood the actual terms and conditions in your policy documents."
+          : "You have " + remaining + " point" + (remaining === 1 ? "" : "s") + " left to check. Consider reviewing these in your policy documents or asking for clarification.";
+      result.classList.add("visible");
+      result.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    });
+
+    reset.addEventListener("click", function () {
+      ids.forEach(id => { document.getElementById(id).checked = false; });
+      document.getElementById("healthResult").classList.remove("visible");
     });
   })();
 </script>
