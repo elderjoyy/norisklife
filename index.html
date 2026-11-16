@@ -113,6 +113,72 @@
 
     nav a:hover { color: var(--gold); }
 
+    .nav-dropdown {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .nav-dropdown-toggle {
+      border: 0;
+      background: transparent;
+      color: #EDF3F7;
+      font: inherit;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 10px 0;
+    }
+
+    .nav-dropdown-toggle:hover,
+    .nav-dropdown-toggle:focus-visible,
+    .nav-dropdown-toggle[aria-expanded="true"] {
+      color: var(--gold);
+    }
+
+    .dropdown-chevron {
+      display: inline-block;
+      margin-left: 4px;
+      font-size: 12px;
+      transition: transform .18s ease;
+    }
+
+    .nav-dropdown-toggle[aria-expanded="true"] .dropdown-chevron {
+      transform: rotate(180deg);
+    }
+
+    .nav-submenu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 10px);
+      left: 0;
+      min-width: 265px;
+      padding: 8px;
+      background: #FFFFFF;
+      border: 1px solid #E1E8EE;
+      border-radius: 8px;
+      box-shadow: 0 12px 28px rgba(0,0,0,.18);
+      z-index: 30;
+    }
+
+    .nav-submenu.open { display: block; }
+
+    .nav-submenu a {
+      display: block;
+      color: var(--navy);
+      padding: 11px 12px;
+      border-radius: 5px;
+      font-size: 14px;
+      line-height: 1.4;
+      white-space: normal;
+    }
+
+    .nav-submenu a:hover,
+    .nav-submenu a:focus-visible {
+      color: var(--teal);
+      background: #EAF4F2;
+    }
+
     .nav-cta {
       background: var(--teal);
       padding: 11px 17px;
@@ -477,6 +543,8 @@
       .hero { padding: 46px 0 70px; }
       .nav { padding: 17px 0; flex-direction: column; }
       nav { justify-content: center; gap: 15px 20px; }
+      .nav-dropdown { display: inline-flex; }
+      .nav-submenu { top: calc(100% + 4px); left: 50%; transform: translateX(-50%); }
       .cards { grid-template-columns: 1fr 1fr; }
       .feature-grid { gap: 30px; }
     }
@@ -513,7 +581,15 @@
       <a href="#">Home</a>
       <a href="#life">Life Insurance</a>
       <a href="#health">Health Insurance</a>
-      <a href="#tools">Insurance Tools</a>
+      <div class="nav-dropdown">
+        <button type="button" class="nav-dropdown-toggle" id="toolsMenuToggle" aria-expanded="false" aria-controls="toolsSubmenu">
+          Insurance Tools <span class="dropdown-chevron" aria-hidden="true">▾</span>
+        </button>
+        <div class="nav-submenu" id="toolsSubmenu">
+          <a href="#tools">Life Cover Needs Calculator</a>
+          <a href="#health-assessment">Health Insurance Coverage Assessment</a>
+        </div>
+      </div>
       <a href="#knowledge">Knowledge Centre</a>
       <a href="#contact" class="nav-cta">Get Information</a>
     </nav>
@@ -936,6 +1012,40 @@
     reset.addEventListener("click", function () {
       ids.forEach(id => { document.getElementById(id).checked = false; });
       document.getElementById("healthResult").classList.remove("visible");
+    });
+  })();
+</script>
+
+<script>
+  (function () {
+    const toggle = document.getElementById("toolsMenuToggle");
+    const submenu = document.getElementById("toolsSubmenu");
+    if (!toggle || !submenu) return;
+
+    function closeMenu() {
+      toggle.setAttribute("aria-expanded", "false");
+      submenu.classList.remove("open");
+    }
+
+    toggle.addEventListener("click", function () {
+      const isOpen = toggle.getAttribute("aria-expanded") === "true";
+      toggle.setAttribute("aria-expanded", String(!isOpen));
+      submenu.classList.toggle("open", !isOpen);
+    });
+
+    submenu.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", closeMenu);
+    });
+
+    document.addEventListener("click", function (event) {
+      if (!event.target.closest(".nav-dropdown")) closeMenu();
+    });
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") {
+        closeMenu();
+        toggle.focus();
+      }
     });
   })();
 </script>
