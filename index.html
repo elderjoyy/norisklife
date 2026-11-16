@@ -1,0 +1,568 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Understand life and health insurance, explore your protection needs and make informed decisions for your family's future.">
+  <title>NORISKLIFE | Know More. Protect Better.</title>
+
+  <style>
+    :root {
+      --navy: #102B46;
+      --teal: #087F70;
+      --gold: #C6A66B;
+      --light: #F4F7F9;
+      --white: #FFFFFF;
+      --text: #405164;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.65;
+    }
+
+    a { text-decoration: none; }
+
+    .container {
+      width: min(1160px, 90%);
+      margin: auto;
+    }
+
+    header {
+      background: var(--navy);
+      color: white;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      box-shadow: 0 3px 15px rgba(0,0,0,.12);
+    }
+
+    .nav {
+      min-height: 82px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+    }
+
+    .brand {
+      color: white;
+      font-size: 27px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      white-space: nowrap;
+    }
+
+    .brand span { color: var(--gold); }
+
+    .tagline {
+      display: block;
+      color: #D6E0E8;
+      font-size: 10px;
+      letter-spacing: 2px;
+      font-weight: 400;
+      margin-top: -3px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: #EDF3F7;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    nav a:hover { color: var(--gold); }
+
+    .nav-cta {
+      background: var(--teal);
+      padding: 11px 17px;
+      border-radius: 5px;
+    }
+
+    nav .nav-cta:hover {
+      background: #0A9684;
+      color: white;
+    }
+
+    .hero {
+      background: linear-gradient(115deg, #102B46 0%, #17435B 65%, #176B67 100%);
+      color: white;
+      padding: 105px 0 100px;
+    }
+
+    .hero-content { max-width: 760px; }
+
+    .eyebrow {
+      color: #E0C58F;
+      text-transform: uppercase;
+      letter-spacing: 2.5px;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 19px;
+    }
+
+    h1 {
+      font-size: clamp(38px, 5.2vw, 61px);
+      line-height: 1.13;
+      letter-spacing: -1.5px;
+      margin-bottom: 23px;
+    }
+
+    .hero p {
+      max-width: 650px;
+      font-size: 18px;
+      color: #E1EAF0;
+      margin-bottom: 32px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 14px 23px;
+      border-radius: 5px;
+      font-weight: 700;
+      font-size: 15px;
+      transition: .2s;
+    }
+
+    .button-primary {
+      color: white;
+      background: var(--teal);
+    }
+
+    .button-primary:hover { background: #099987; }
+
+    .button-outline {
+      color: white;
+      border: 1px solid rgba(255,255,255,.65);
+      margin-left: 10px;
+    }
+
+    .button-outline:hover { background: rgba(255,255,255,.1); }
+
+    section { padding: 78px 0; }
+
+    .section-heading {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto 42px;
+    }
+
+    .section-heading h2 {
+      color: var(--navy);
+      font-size: clamp(28px, 3vw, 37px);
+      line-height: 1.25;
+      margin-bottom: 14px;
+    }
+
+    .section-heading p { font-size: 16px; }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 23px;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid #E4EAF0;
+      border-radius: 9px;
+      padding: 29px;
+      box-shadow: 0 7px 24px rgba(16,43,70,.045);
+    }
+
+    .card-icon {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      background: #E8F4F1;
+      color: var(--teal);
+      border-radius: 10px;
+      font-size: 23px;
+      margin-bottom: 20px;
+    }
+
+    .card h3 {
+      color: var(--navy);
+      font-size: 20px;
+      margin-bottom: 11px;
+    }
+
+    .card p { font-size: 15px; margin-bottom: 18px; }
+
+    .card a, .text-link {
+      color: var(--teal);
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .card a:hover, .text-link:hover { text-decoration: underline; }
+
+    .soft-section { background: var(--light); }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 55px;
+      align-items: center;
+    }
+
+    .feature-copy h2 {
+      color: var(--navy);
+      font-size: 35px;
+      line-height: 1.25;
+      margin-bottom: 18px;
+    }
+
+    .feature-copy p { margin-bottom: 18px; }
+
+    .feature-list {
+      list-style: none;
+      margin: 23px 0;
+    }
+
+    .feature-list li {
+      padding: 8px 0 8px 28px;
+      position: relative;
+    }
+
+    .feature-list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--teal);
+      font-weight: 800;
+    }
+
+    .feature-panel {
+      background: var(--navy);
+      color: white;
+      padding: 39px;
+      border-radius: 12px;
+    }
+
+    .feature-panel h3 {
+      color: #E4C98F;
+      font-size: 23px;
+      margin-bottom: 15px;
+    }
+
+    .feature-panel p { color: #E0E9EF; }
+
+    .feature-panel .button { margin-top: 23px; }
+
+    .knowledge-card {
+      border-top: 3px solid var(--gold);
+    }
+
+    .cta-section {
+      background: linear-gradient(110deg, #102B46, #145B5B);
+      color: white;
+      text-align: center;
+      padding: 72px 0;
+    }
+
+    .cta-section h2 {
+      font-size: clamp(28px, 3vw, 38px);
+      margin-bottom: 14px;
+    }
+
+    .cta-section p {
+      max-width: 650px;
+      margin: 0 auto 25px;
+      color: #E1EAF0;
+    }
+
+    footer {
+      background: #0B2035;
+      color: #D1DCE5;
+      padding: 48px 0 20px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 45px;
+      padding-bottom: 35px;
+    }
+
+    footer h3, footer h4 {
+      color: white;
+      margin-bottom: 15px;
+    }
+
+    footer p, footer a {
+      color: #C4D0DA;
+      font-size: 14px;
+    }
+
+    footer a { display: block; margin: 8px 0; }
+    footer a:hover { color: var(--gold); }
+
+    .disclaimer {
+      border-top: 1px solid #304355;
+      padding-top: 19px;
+      font-size: 12px;
+      color: #AEBBC7;
+    }
+
+    .copyright {
+      text-align: center;
+      border-top: 1px solid #304355;
+      margin-top: 20px;
+      padding-top: 17px;
+      font-size: 12px;
+      color: #AEBBC7;
+    }
+
+    @media (max-width: 850px) {
+      .nav { padding: 17px 0; flex-direction: column; }
+      nav { justify-content: center; gap: 15px 20px; }
+      .cards { grid-template-columns: 1fr 1fr; }
+      .feature-grid { gap: 30px; }
+    }
+
+    @media (max-width: 600px) {
+      .hero { padding: 75px 0; }
+      .hero p { font-size: 16px; }
+      .button { margin: 5px 0; }
+      .button-outline { margin-left: 0; }
+      .cards, .feature-grid, .footer-grid { grid-template-columns: 1fr; }
+      section { padding: 58px 0; }
+      .feature-panel { padding: 28px; }
+      nav { gap: 12px 17px; }
+      nav a { font-size: 13px; }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="container nav">
+    <a href="#" class="brand">
+      NORISK<span>LIFE</span>
+      <span class="tagline">KNOW MORE. PROTECT BETTER.</span>
+    </a>
+
+    <nav aria-label="Main navigation">
+      <a href="#">Home</a>
+      <a href="#life">Life Insurance</a>
+      <a href="#health">Health Insurance</a>
+      <a href="#tools">Insurance Tools</a>
+      <a href="#knowledge">Knowledge Centre</a>
+      <a href="#contact" class="nav-cta">Get Information</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="eyebrow">A smarter approach to insurance</div>
+        <h1>Make informed decisions about your family's protection.</h1>
+        <p>
+          Understand life and health insurance, explore your protection
+          needs and get guidance to make more confident decisions
+          for the people who matter most.
+        </p>
+        <a href="#life" class="button button-primary">Explore Insurance Solutions</a>
+        <a href="#knowledge" class="button button-outline">Learn & Understand</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="solutions">
+    <div class="container">
+      <div class="section-heading">
+        <h2>Protection begins with understanding</h2>
+        <p>
+          Insurance decisions deserve clarity. Start with the fundamentals
+          and explore the areas that matter to your family's financial security.
+        </p>
+      </div>
+
+      <div class="cards">
+        <article class="card" id="life">
+          <div class="card-icon">♡</div>
+          <h3>Life Insurance</h3>
+          <p>
+            Understand life cover, financial responsibilities, term insurance
+            and how to think about protecting your family's future.
+          </p>
+          <a href="#knowledge">Explore life insurance →</a>
+        </article>
+
+        <article class="card" id="health">
+          <div class="card-icon">✚</div>
+          <h3>Health Insurance</h3>
+          <p>
+            Learn about health cover, policy features, waiting periods,
+            exclusions and important considerations before choosing a policy.
+          </p>
+          <a href="#knowledge">Explore health insurance →</a>
+        </article>
+
+        <article class="card" id="tools">
+          <div class="card-icon">▤</div>
+          <h3>Insurance Tools</h3>
+          <p>
+            Explore practical resources to understand your protection needs,
+            review existing cover and plan your next steps.
+          </p>
+          <a href="#contact">Explore resources →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="soft-section">
+    <div class="container feature-grid">
+      <div class="feature-copy">
+        <div class="eyebrow" style="color:#087F70">Clarity before decisions</div>
+        <h2>Insurance can be easier to understand.</h2>
+        <p>
+          Choosing insurance is not simply about selecting a policy.
+          It is about understanding your responsibilities, evaluating
+          your needs and knowing what you are committing to.
+        </p>
+        <ul class="feature-list">
+          <li>Understand important insurance concepts.</li>
+          <li>Learn what policy features and exclusions mean.</li>
+          <li>Think about your family's protection requirements.</li>
+          <li>Seek guidance when you need help with your decision.</li>
+        </ul>
+        <a href="#knowledge" class="text-link">Visit the Knowledge Centre →</a>
+      </div>
+
+      <div class="feature-panel">
+        <h3>Better informed. Better prepared.</h3>
+        <p>
+          Whether you are exploring insurance for the first time or
+          reviewing an existing policy, begin with the right information.
+          Take your time, understand your options and ask questions.
+        </p>
+        <a href="#contact" class="button button-primary">Request Information</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="knowledge">
+    <div class="container">
+      <div class="section-heading">
+        <h2>Knowledge that helps you decide</h2>
+        <p>
+          Build your understanding with straightforward educational
+          resources on life and health insurance.
+        </p>
+      </div>
+
+      <div class="cards">
+        <article class="card knowledge-card">
+          <h3>Life Insurance Basics</h3>
+          <p>
+            What is life insurance? How does term insurance work?
+            How much life cover might a family need?
+          </p>
+          <a href="#contact">Explore this topic →</a>
+        </article>
+
+        <article class="card knowledge-card">
+          <h3>Understanding Health Cover</h3>
+          <p>
+            Learn about sum insured, waiting periods, exclusions,
+            room rent limits and claim-related considerations.
+          </p>
+          <a href="#contact">Explore this topic →</a>
+        </article>
+
+        <article class="card knowledge-card">
+          <h3>Review Before You Decide</h3>
+          <p>
+            Discover useful questions to ask, documents to examine
+            and details to understand before purchasing insurance.
+          </p>
+          <a href="#contact">Explore this topic →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section" id="contact">
+    <div class="container">
+      <h2>Have questions about insurance?</h2>
+      <p>
+        Tell us whether you are exploring life insurance, health insurance
+        or reviewing existing cover. You can request information and
+        guidance for your next step.
+      </p>
+      <a href="mailto:info@norisklife.in?subject=Insurance%20Information%20Enquiry"
+         class="button button-primary">Request Information</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h3>NORISKLIFE</h3>
+        <p>Know More. Protect Better.</p>
+        <p style="margin-top:12px">
+          Helping people build a clearer understanding of life
+          and health insurance.
+        </p>
+      </div>
+
+      <div>
+        <h4>Explore</h4>
+        <a href="#life">Life Insurance</a>
+        <a href="#health">Health Insurance</a>
+        <a href="#tools">Insurance Tools</a>
+        <a href="#knowledge">Knowledge Centre</a>
+      </div>
+
+      <div>
+        <h4>Information</h4>
+        <a href="#contact">Contact</a>
+        <a href="#contact">Privacy Policy</a>
+        <a href="#contact">Terms & Conditions</a>
+      </div>
+    </div>
+
+    <div class="disclaimer">
+      <strong>Important information:</strong>
+      The content on this website is intended for general educational
+      and informational purposes. It should not be treated as a
+      recommendation to purchase a particular insurance product.
+      Policy terms, conditions, eligibility, exclusions and benefits
+      vary. Please review the relevant policy documents and seek
+      appropriate guidance before making a decision.
+      Any insurance distribution or solicitation will be undertaken
+      only in accordance with applicable authorisations and regulations.
+    </div>
+
+    <div class="copyright">
+      © 2026 NORISKLIFE. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
