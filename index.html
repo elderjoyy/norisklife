@@ -161,7 +161,11 @@
       z-index: 30;
     }
 
-    .nav-submenu.open { display: block; }
+    .nav-submenu.open,
+    .nav-dropdown:hover .nav-submenu,
+    .nav-dropdown:focus-within .nav-submenu {
+      display: block;
+    }
 
     .nav-submenu a {
       display: block;
