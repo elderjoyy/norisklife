@@ -675,7 +675,15 @@
         </div>
       </div>
       <a href="#knowledge">Knowledge Centre</a>
-      <a href="#about">About</a>
+      <div class="nav-dropdown">
+        <button type="button" class="nav-dropdown-toggle" id="aboutMenuToggle" aria-expanded="false" aria-controls="aboutSubmenu">
+          About <span class="dropdown-chevron" aria-hidden="true">▾</span>
+        </button>
+        <div class="nav-submenu" id="aboutSubmenu">
+          <a href="#about">About NORISKLIFE</a>
+          <a href="#why-norisklife">Why start with NORISKLIFE?</a>
+        </div>
+      </div>
       <a href="#contact" class="nav-cta">Get Information</a>
     </nav>
   </div>
@@ -743,7 +751,7 @@
     </div>
   </section>
 
-  <section class="why-section">
+  <section class="why-section" id="why-norisklife">
     <div class="container">
       <div class="section-heading">
         <h2>Why start with NORISKLIFE?</h2>
@@ -1426,33 +1434,42 @@
 
 <script>
   (function () {
-    const toggle = document.getElementById("toolsMenuToggle");
-    const submenu = document.getElementById("toolsSubmenu");
-    if (!toggle || !submenu) return;
+    const menus = [
+      { toggle: document.getElementById("toolsMenuToggle"), submenu: document.getElementById("toolsSubmenu") },
+      { toggle: document.getElementById("aboutMenuToggle"), submenu: document.getElementById("aboutSubmenu") }
+    ].filter(menu => menu.toggle && menu.submenu);
 
-    function closeMenu() {
-      toggle.setAttribute("aria-expanded", "false");
-      submenu.classList.remove("open");
+    function closeMenu(menu) {
+      menu.toggle.setAttribute("aria-expanded", "false");
+      menu.submenu.classList.remove("open");
     }
 
-    toggle.addEventListener("click", function () {
-      const isOpen = toggle.getAttribute("aria-expanded") === "true";
-      toggle.setAttribute("aria-expanded", String(!isOpen));
-      submenu.classList.toggle("open", !isOpen);
-    });
+    menus.forEach(function (menu) {
+      menu.toggle.addEventListener("click", function () {
+        const isOpen = menu.toggle.getAttribute("aria-expanded") === "true";
+        menus.forEach(closeMenu);
+        if (!isOpen) {
+          menu.toggle.setAttribute("aria-expanded", "true");
+          menu.submenu.classList.add("open");
+        }
+      });
 
-    submenu.querySelectorAll("a").forEach(function (link) {
-      link.addEventListener("click", closeMenu);
+      menu.submenu.querySelectorAll("a").forEach(function (link) {
+        link.addEventListener("click", function () { closeMenu(menu); });
+      });
     });
 
     document.addEventListener("click", function (event) {
-      if (!event.target.closest(".nav-dropdown")) closeMenu();
+      if (!event.target.closest(".nav-dropdown")) menus.forEach(closeMenu);
     });
 
     document.addEventListener("keydown", function (event) {
       if (event.key === "Escape") {
-        closeMenu();
-        toggle.focus();
+        menus.forEach(function (menu) {
+          const wasOpen = menu.toggle.getAttribute("aria-expanded") === "true";
+          closeMenu(menu);
+          if (wasOpen) menu.toggle.focus();
+        });
       }
     });
   })();
