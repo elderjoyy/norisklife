@@ -478,6 +478,12 @@
     .assessment-result h3 { color: var(--navy); margin-bottom: 8px; }
     .assessment-result strong { color: var(--teal); }
 
+    .tool-checklist { display: grid; gap: 12px; }
+    .tool-checklist .assessment-item { background: #FFFFFF; }
+    .tool-result-line { color: var(--navy); font-weight: 700; margin-top: 8px; }
+    .tool-section-alt { background: #FFFFFF; }
+
+
     .knowledge-card {
       border-top: 3px solid var(--gold);
     }
@@ -592,6 +598,9 @@
         <div class="nav-submenu" id="toolsSubmenu">
           <a href="#tools">Life Cover Needs Calculator</a>
           <a href="#health-assessment">Health Insurance Coverage Assessment</a>
+          <a href="#family-assessment">Family Protection Assessment</a>
+          <a href="#health-gap-planner">Health Cover Gap Planner</a>
+          <a href="#premium-affordability">Premium Affordability Calculator</a>
         </div>
       </div>
       <a href="#knowledge">Knowledge Centre</a>
@@ -839,6 +848,106 @@
     </div>
   </section>
 
+
+  <section class="assessment-section" id="family-assessment">
+    <div class="container">
+      <div class="section-heading">
+        <h2>Family Protection Assessment</h2>
+        <p>Use this practical checklist to identify family protection topics you may want to discuss and plan for.</p>
+      </div>
+      <div class="assessment-wrap">
+        <div class="tool-checklist">
+          <div class="assessment-item"><input type="checkbox" id="fp1"><label for="fp1">Income continuity <small>Have I considered how my family would manage regular household expenses if my income stopped?</small></label></div>
+          <div class="assessment-item"><input type="checkbox" id="fp2"><label for="fp2">Loans and liabilities <small>Have I listed home loans, personal loans and other outstanding liabilities?</small></label></div>
+          <div class="assessment-item"><input type="checkbox" id="fp3"><label for="fp3">Dependants and responsibilities <small>Have I considered the people who depend on my income and how long they may need support?</small></label></div>
+          <div class="assessment-item"><input type="checkbox" id="fp4"><label for="fp4">Future goals <small>Have I considered education, caregiving and other important family goals?</small></label></div>
+          <div class="assessment-item"><input type="checkbox" id="fp5"><label for="fp5">Existing resources and cover <small>Have I reviewed savings, investments and existing life insurance without counting the same resource twice?</small></label></div>
+          <div class="assessment-item"><input type="checkbox" id="fp6"><label for="fp6">Documents and nominees <small>Are policy details, nominees and important financial documents up to date and accessible to my family?</small></label></div>
+        </div>
+        <div class="calculator-actions">
+          <button type="button" class="button button-primary" id="reviewFamily">Review My Assessment</button>
+          <button type="button" class="button button-outline" id="resetFamily" style="color:#102B46;border-color:#AAB8C5">Reset</button>
+        </div>
+        <div class="assessment-result" id="familyResult" aria-live="polite">
+          <h3 id="familyResultTitle">Your family protection review</h3>
+          <p id="familyResultText"></p>
+          <p class="tool-result-line" id="familyResultCount"></p>
+        </div>
+        <p class="calculator-note">This checklist is an educational planning aid, not a financial needs analysis or insurance recommendation. Your selections are processed in this browser and are not submitted or saved.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="calculator-section tool-section-alt" id="health-gap-planner">
+    <div class="container">
+      <div class="section-heading">
+        <h2>Health Cover Gap Planner</h2>
+        <p>Enter a health-cover amount you want to plan around and compare it with cover you already have. This tool does not recommend a suitable sum insured.</p>
+      </div>
+      <div class="calculator-wrap">
+        <div class="calculator-grid">
+          <div class="calculator-field">
+            <label for="targetHealthCover">Your chosen health-cover planning amount (₹)</label>
+            <input id="targetHealthCover" type="number" min="0" step="50000" value="1000000">
+            <span class="calculator-help">Choose an amount to use for this illustration; it is not a recommended amount.</span>
+          </div>
+          <div class="calculator-field">
+            <label for="personalHealthCover">Existing personal / family health cover (₹)</label>
+            <input id="personalHealthCover" type="number" min="0" step="50000" value="500000">
+          </div>
+          <div class="calculator-field">
+            <label for="employerHealthCover">Employer-provided cover (₹)</label>
+            <input id="employerHealthCover" type="number" min="0" step="50000" value="300000">
+            <span class="calculator-help">Include this separately and consider its limits and continuity.</span>
+          </div>
+        </div>
+        <div class="calculator-actions">
+          <button type="button" class="button button-primary" id="calculateHealthGap">Calculate Illustrative Difference</button>
+        </div>
+        <div class="calculator-result" id="healthGapResult" aria-live="polite">
+          <h3 id="healthGapTitle">Illustrative difference</h3>
+          <div class="calculator-amount" id="healthGapAmount">₹0</div>
+          <p id="healthGapExplanation"></p>
+        </div>
+        <p class="calculator-note">This is a simple arithmetic illustration based only on the amounts entered. It does not assess policy limits, exclusions, waiting periods, portability, employer-cover continuity or actual healthcare costs. Do not treat the result as a coverage recommendation. Entries stay in this browser and are not submitted.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="assessment-section" id="premium-affordability">
+    <div class="container">
+      <div class="section-heading">
+        <h2>Premium Affordability Calculator</h2>
+        <p>See how an illustrative annual insurance premium compares with your annual take-home income and existing premiums.</p>
+      </div>
+      <div class="calculator-wrap">
+        <div class="calculator-grid">
+          <div class="calculator-field">
+            <label for="monthlyTakeHome">Monthly take-home household income (₹)</label>
+            <input id="monthlyTakeHome" type="number" min="1" step="1000" value="100000">
+          </div>
+          <div class="calculator-field">
+            <label for="existingAnnualPremium">Existing annual insurance premiums (₹)</label>
+            <input id="existingAnnualPremium" type="number" min="0" step="1000" value="30000">
+          </div>
+          <div class="calculator-field">
+            <label for="proposedAnnualPremium">Premium being considered per year (₹)</label>
+            <input id="proposedAnnualPremium" type="number" min="0" step="1000" value="25000">
+          </div>
+        </div>
+        <div class="calculator-actions">
+          <button type="button" class="button button-primary" id="calculateAffordability">Calculate Premium Share</button>
+        </div>
+        <div class="calculator-result" id="affordabilityResult" aria-live="polite">
+          <h3>Illustrative annual premium share</h3>
+          <div class="calculator-amount" id="affordabilityPercent">0%</div>
+          <p id="affordabilityExplanation"></p>
+        </div>
+        <p class="calculator-note">This calculator shows a ratio, not whether a policy is affordable or suitable. Consider essential living costs, debts, emergency savings, premium payment frequency, possible future premium changes and policy benefits before deciding. There is no universal affordability percentage. Entries are calculated in this browser and are not submitted or saved.</p>
+      </div>
+    </div>
+  </section>
+
   <section id="knowledge">
     <div class="container">
       <div class="section-heading">
@@ -1050,6 +1159,104 @@
         closeMenu();
         toggle.focus();
       }
+    });
+  })();
+</script>
+
+
+<script>
+  (function () {
+    const ids = ["fp1","fp2","fp3","fp4","fp5","fp6"];
+    const review = document.getElementById("reviewFamily");
+    const reset = document.getElementById("resetFamily");
+    if (!review || !reset) return;
+    review.addEventListener("click", function () {
+      const checked = ids.filter(id => document.getElementById(id).checked).length;
+      const remaining = ids.length - checked;
+      document.getElementById("familyResultTitle").textContent =
+        remaining === 0 ? "You have reviewed every topic" : "Some topics may still need attention";
+      document.getElementById("familyResultText").textContent =
+        remaining === 0
+          ? "You have marked all topics as reviewed. Revisit the details as your family's circumstances change."
+          : "Consider reviewing the remaining topics and discussing any gaps with an appropriately authorised professional.";
+      document.getElementById("familyResultCount").textContent =
+        checked + " of " + ids.length + " topics reviewed";
+      document.getElementById("familyResult").classList.add("visible");
+    });
+    reset.addEventListener("click", function () {
+      ids.forEach(id => { document.getElementById(id).checked = false; });
+      document.getElementById("familyResult").classList.remove("visible");
+    });
+  })();
+</script>
+
+<script>
+  (function () {
+    const button = document.getElementById("calculateHealthGap");
+    if (!button) return;
+    const ids = ["targetHealthCover","personalHealthCover","employerHealthCover"];
+    button.addEventListener("click", function () {
+      const values = {};
+      for (const id of ids) {
+        const input = document.getElementById(id);
+        const value = Number(input.value);
+        if (input.value.trim() === "" || !Number.isFinite(value) || value < 0) {
+          input.focus();
+          document.getElementById("healthGapResult").classList.add("visible");
+          document.getElementById("healthGapTitle").textContent = "Please check your entries";
+          document.getElementById("healthGapAmount").textContent = "Invalid amount";
+          document.getElementById("healthGapExplanation").textContent = "Enter a zero or positive number in every field.";
+          return;
+        }
+        values[id] = value;
+      }
+      const totalCover = values.personalHealthCover + values.employerHealthCover;
+      const difference = Math.max(0, values.targetHealthCover - totalCover);
+      const formatINR = new Intl.NumberFormat("en-IN", {style:"currency",currency:"INR",maximumFractionDigits:0});
+      document.getElementById("healthGapTitle").textContent =
+        totalCover >= values.targetHealthCover ? "Entered cover meets or exceeds your planning amount" : "Difference against your planning amount";
+      document.getElementById("healthGapAmount").textContent = formatINR.format(difference);
+      document.getElementById("healthGapExplanation").textContent =
+        "Personal and employer cover entered: " + formatINR.format(totalCover) +
+        ". This comparison does not establish whether the cover is adequate or available for every claim.";
+      document.getElementById("healthGapResult").classList.add("visible");
+    });
+  })();
+</script>
+
+<script>
+  (function () {
+    const button = document.getElementById("calculateAffordability");
+    if (!button) return;
+    button.addEventListener("click", function () {
+      const income = Number(document.getElementById("monthlyTakeHome").value);
+      const existing = Number(document.getElementById("existingAnnualPremium").value);
+      const proposed = Number(document.getElementById("proposedAnnualPremium").value);
+      const result = document.getElementById("affordabilityResult");
+      const inputs = ["monthlyTakeHome","existingAnnualPremium","proposedAnnualPremium"];
+      const valid = inputs.every(id => {
+        const el = document.getElementById(id);
+        const v = Number(el.value);
+        return el.value.trim() !== "" && Number.isFinite(v) && v >= 0;
+      });
+      if (!valid || income <= 0) {
+        result.classList.add("visible");
+        document.getElementById("affordabilityPercent").textContent = "Check entries";
+        document.getElementById("affordabilityExplanation").textContent = "Enter a monthly income greater than zero and zero or positive premium amounts.";
+        document.getElementById(!Number.isFinite(income) || income <= 0 ? "monthlyTakeHome" : inputs.find(id => document.getElementById(id).value.trim() === "" || Number(document.getElementById(id).value) < 0)).focus();
+        return;
+      }
+      const annualIncome = income * 12;
+      const combinedPremium = existing + proposed;
+      const share = combinedPremium / annualIncome * 100;
+      const formatINR = new Intl.NumberFormat("en-IN", {style:"currency",currency:"INR",maximumFractionDigits:0});
+      document.getElementById("affordabilityPercent").textContent = share.toFixed(1) + "%";
+      document.getElementById("affordabilityExplanation").textContent =
+        "Combined annual premiums entered: " + formatINR.format(combinedPremium) +
+        " against annual take-home income of " + formatINR.format(annualIncome) +
+        ". Existing premiums alone are " + formatINR.format(existing) +
+        ". Review your full household budget before making a decision.";
+      result.classList.add("visible");
     });
   })();
 </script>
