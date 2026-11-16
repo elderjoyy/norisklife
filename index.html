@@ -23,7 +23,11 @@
 
     html {
       scroll-behavior: smooth;
-      scroll-padding-top: 94px;
+    }
+
+    /* Keep anchor destinations clear of the sticky navigation. */
+    [id] {
+      scroll-margin-top: 105px;
     }
 
     body {
@@ -352,7 +356,7 @@
     }
 
     @media (max-width: 850px) {
-      html { scroll-padding-top: 145px; }
+      [id] { scroll-margin-top: 185px; }
       .hero { padding: 46px 0 70px; }
       .nav { padding: 17px 0; flex-direction: column; }
       nav { justify-content: center; gap: 15px 20px; }
@@ -361,7 +365,7 @@
     }
 
     @media (max-width: 600px) {
-      html { scroll-padding-top: 180px; }
+      [id] { scroll-margin-top: 220px; }
       .hero { padding: 36px 0 58px; }
       .hero p { font-size: 16px; }
       .button { margin: 5px 0; }
