@@ -562,6 +562,88 @@
       max-width: 720px;
       margin: 0 auto 22px;
     }
+
+    .contact-form-wrap {
+      max-width: 820px;
+      margin: 28px auto 0;
+      padding: 28px;
+      border-radius: 12px;
+      background: #FFFFFF;
+      color: var(--text);
+      text-align: left;
+      box-shadow: 0 12px 34px rgba(0,0,0,.16);
+    }
+    .preview-notice {
+      padding: 14px 16px;
+      margin-bottom: 22px;
+      border: 1px solid #E6D5A8;
+      border-left: 4px solid var(--gold);
+      border-radius: 6px;
+      background: #FBF7ED;
+      color: #5D5037;
+      font-size: 14px;
+    }
+    .contact-form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+    .contact-field label {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--navy);
+      font-size: 14px;
+      font-weight: 700;
+    }
+    .contact-field label span {
+      color: #718092;
+      font-weight: 400;
+    }
+    .contact-field input,
+    .contact-field select {
+      width: 100%;
+      min-height: 48px;
+      padding: 11px 13px;
+      border: 1px solid #C9D4DE;
+      border-radius: 6px;
+      background: #FFFFFF;
+      color: var(--navy);
+      font: inherit;
+      font-size: 15px;
+    }
+    .contact-field input:focus,
+    .contact-field select:focus {
+      outline: 2px solid var(--teal);
+      outline-offset: 1px;
+    }
+    .contact-consent {
+      display: flex;
+      align-items: flex-start;
+      gap: 11px;
+      margin: 22px 0 17px;
+      color: #405164;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+    .contact-consent input {
+      width: 18px;
+      height: 18px;
+      margin-top: 2px;
+      flex: 0 0 auto;
+      accent-color: var(--teal);
+    }
+    .contact-submit,
+    .contact-submit:disabled {
+      border: 0;
+      cursor: not-allowed;
+      opacity: .65;
+    }
+    .contact-form-footnote {
+      margin-top: 13px;
+      color: #68798A;
+      font-size: 12px;
+    }
+    .contact-knowledge-link { margin-top: 22px; }
     .legal-section { background: var(--light); }
     .legal-content {
       max-width: 900px;
@@ -657,6 +739,9 @@
       nav a, .nav-dropdown-toggle { font-size: 14px; }
       .nav-cta { padding: 8px 10px; }
       .nav-submenu { min-width: 245px; }
+      .contact-form-wrap { padding: 20px; }
+      .contact-form-grid { grid-template-columns: 1fr; gap: 14px; }
+      .contact-submit { width: 100%; white-space: normal; }
     }
   </style>
 </head>
@@ -1232,12 +1317,61 @@
     <div class="container">
       <h2>Have questions about insurance?</h2>
       <p>
-        Tell us whether you are exploring life insurance, health insurance
-        or reviewing existing cover. You can request information and
-        guidance for your next step.
+        Tell us what you would like to understand. This form is being prepared
+        to help visitors request information about life and health insurance.
       </p>
-      <p class="contact-status">Our direct enquiry facility is being prepared. In the meantime, you can explore the educational guides and tools on this website.</p>
-      <a href="#knowledge" class="button button-primary">Explore the Knowledge Centre</a>
+      <div class="contact-form-wrap">
+        <div class="preview-notice">
+          <strong>Preview mode:</strong> This form is for layout testing only.
+          Do not enter real personal information. Nothing you type here is sent
+          or stored, and submission is not yet enabled.
+        </div>
+        <form class="contact-form" id="contactForm">
+          <div class="contact-form-grid">
+            <div class="contact-field">
+              <label for="contactName">Your name</label>
+              <input id="contactName" name="name" type="text" autocomplete="name" placeholder="Enter your name" required>
+            </div>
+            <div class="contact-field">
+              <label for="contactMobile">Mobile number</label>
+              <input id="contactMobile" name="mobile" type="tel" inputmode="tel" autocomplete="tel" placeholder="Enter your mobile number" required>
+            </div>
+            <div class="contact-field">
+              <label for="contactEmail">Email address <span>(optional)</span></label>
+              <input id="contactEmail" name="email" type="email" autocomplete="email" placeholder="Enter your email address">
+            </div>
+            <div class="contact-field">
+              <label for="contactCity">City</label>
+              <input id="contactCity" name="city" type="text" autocomplete="address-level2" placeholder="Enter your city" required>
+            </div>
+            <div class="contact-field">
+              <label for="contactInterest">What would you like information about?</label>
+              <select id="contactInterest" name="interest" required>
+                <option value="">Select an area</option>
+                <option value="Life Insurance">Life Insurance</option>
+                <option value="Health Insurance">Health Insurance</option>
+                <option value="General Information">General Information</option>
+              </select>
+            </div>
+            <div class="contact-field">
+              <label for="contactTime">Preferred callback time</label>
+              <select id="contactTime" name="callback_time" required>
+                <option value="">Select a convenient time</option>
+                <option value="Morning (9 AM–12 PM)">Morning (9 AM–12 PM)</option>
+                <option value="Afternoon (12 PM–4 PM)">Afternoon (12 PM–4 PM)</option>
+                <option value="Evening (4 PM–7 PM)">Evening (4 PM–7 PM)</option>
+              </select>
+            </div>
+          </div>
+          <label class="contact-consent" for="contactConsent">
+            <input id="contactConsent" name="consent" type="checkbox" required>
+            <span>I agree to be contacted about this request. I understand that the details of how my information is used and any sharing, if applicable, will be explained before this facility is activated.</span>
+          </label>
+          <button class="button button-primary contact-submit" type="button" disabled>Enquiry submission coming soon</button>
+          <p class="contact-form-footnote">Please do not enter medical details, policy numbers, identity documents or financial account information.</p>
+        </form>
+      </div>
+      <a href="#knowledge" class="button button-outline contact-knowledge-link">Explore the Knowledge Centre</a>
     </div>
   </section>
 
@@ -1257,7 +1391,7 @@
         <p>The calculators and checklists currently provided on this website are designed to process the values or selections you enter within your browser. They display results on the page and are not designed to submit those entries to NORISKLIFE.</p>
 
         <h3>2. Enquiries and communications</h3>
-        <p>This website does not currently offer an online enquiry form. If you independently contact NORISKLIFE using a communication method made available in the future, the information you choose to provide may be used to respond to your request. A more detailed notice and consent process will be provided before any online enquiry facility is activated.</p>
+        <p>The enquiry form currently displayed on this website is a non-functional preview only. Submission is disabled; information typed into its fields is not transmitted to NORISKLIFE or stored by this website. Visitors should not enter real personal information while the form remains in preview mode. Before any live enquiry facility is activated, this notice will explain the information collected, the purposes and lawful basis for processing, retention, security, contact channel and any recipients or sharing, and an appropriate consent process will be provided where required.</p>
 
         <h3>3. Technical information</h3>
         <p>The website is hosted using an online hosting provider. Like many hosting services, the provider may process technical information such as IP address, browser details, request time and pages requested for security, reliability and troubleshooting. The precise logs, retention periods and provider settings depend on the hosting configuration.</p>
