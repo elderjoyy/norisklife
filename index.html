@@ -1326,7 +1326,7 @@
           Do not enter real personal information. Nothing you type here is sent
           or stored, and submission is not yet enabled.
         </div>
-        <form class="contact-form" id="contactForm">
+        <form class="contact-form" id="contactForm" action="https://script.google.com/macros/s/AKfycbzLJMbyB4Qx474SeWYp6AwUGVa23hpDL3DpO-w1ZhXJ5dQlTVg7zNNch06TRGbNn07o/exec" method="post" target="norisklifeResponseFrame">
           <div class="contact-form-grid">
             <div class="contact-field">
               <label for="contactName">Your name</label>
@@ -1337,8 +1337,8 @@
               <input id="contactMobile" name="mobile" type="tel" inputmode="tel" autocomplete="tel" placeholder="Enter your mobile number" required>
             </div>
             <div class="contact-field">
-              <label for="contactEmail">Email address <span>(optional)</span></label>
-              <input id="contactEmail" name="email" type="email" autocomplete="email" placeholder="Enter your email address">
+              <label for="contactEmail">Email address</label>
+              <input id="contactEmail" name="email" type="email" autocomplete="email" placeholder="Enter your email address" required>
             </div>
             <div class="contact-field">
               <label for="contactCity">City</label>
@@ -1355,7 +1355,7 @@
             </div>
             <div class="contact-field">
               <label for="contactTime">Preferred callback time</label>
-              <select id="contactTime" name="callback_time" required>
+              <select id="contactTime" name="callback" required>
                 <option value="">Select a convenient time</option>
                 <option value="Morning (9 AM–12 PM)">Morning (9 AM–12 PM)</option>
                 <option value="Afternoon (12 PM–4 PM)">Afternoon (12 PM–4 PM)</option>
@@ -1367,9 +1367,11 @@
             <input id="contactConsent" name="consent" type="checkbox" required>
             <span>I agree to be contacted about this request. I understand that the details of how my information is used and any sharing, if applicable, will be explained before this facility is activated.</span>
           </label>
-          <button class="button button-primary contact-submit" type="button" disabled>Enquiry submission coming soon</button>
+          <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-10000px;width:1px;height:1px;">
+          <button class="button button-primary contact-submit" type="submit" disabled>Enquiry submission coming soon</button>
           <p class="contact-form-footnote">Please do not enter medical details, policy numbers, identity documents or financial account information.</p>
         </form>
+        <iframe name="norisklifeResponseFrame" title="Enquiry response" hidden></iframe>
       </div>
       <a href="#knowledge" class="button button-outline contact-knowledge-link">Explore the Knowledge Centre</a>
     </div>
