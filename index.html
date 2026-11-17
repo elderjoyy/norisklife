@@ -1455,6 +1455,43 @@
         </article>
       </div>
 
+      <div class="section-heading" style="margin-top:48px;margin-bottom:26px">
+        <h2>How your organisation benefits</h2>
+        <p>Give employees practical insurance knowledge as part of your organisation's employee awareness and wellbeing initiatives.</p>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <div class="card-icon" aria-hidden="true">✓</div>
+          <h3>Better-informed employees</h3>
+          <p>Help employees understand life and health insurance concepts, policy terminology and the questions they should ask before making decisions.</p>
+        </article>
+        <article class="card">
+          <div class="card-icon" aria-hidden="true">＋</div>
+          <h3>Greater awareness of existing benefits</h3>
+          <p>Help employees become more familiar with the group health cover and other protection benefits their organisation makes available, including where to find the relevant policy information.</p>
+        </article>
+        <article class="card">
+          <div class="card-icon" aria-hidden="true">◎</div>
+          <h3>Support for employee financial wellbeing</h3>
+          <p>Include practical insurance education in broader employee financial-awareness and wellbeing activities.</p>
+        </article>
+        <article class="card">
+          <div class="card-icon" aria-hidden="true">?</div>
+          <h3>Clearer understanding, fewer misconceptions</h3>
+          <p>Provide space to discuss common misunderstandings about coverage, exclusions, waiting periods, claims and family protection.</p>
+        </article>
+        <article class="card">
+          <div class="card-icon" aria-hidden="true">↗</div>
+          <h3>Engaging learning experience</h3>
+          <p>Use interactive sessions and question-and-answer discussions to make insurance topics easier to understand.</p>
+        </article>
+        <article class="card">
+          <div class="card-icon" aria-hidden="true">⚙</div>
+          <h3>Flexible programmes for your workforce</h3>
+          <p>Choose online or in-person sessions, short talks or detailed workshops, based on employee groups and organisational requirements.</p>
+        </article>
+      </div>
+
       <div class="feature-grid" style="margin-top:48px">
         <div class="feature-copy">
           <h2>What can the programme cover?</h2>
@@ -1849,6 +1886,11 @@
     function closeMenu(menu) {
       menu.toggle.setAttribute("aria-expanded", "false");
       menu.submenu.classList.remove("open");
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        menu.submenu.style.setProperty("display", "none", "important");
+      } else {
+        menu.submenu.style.removeProperty("display");
+      }
     }
 
     menus.forEach(function (menu) {
@@ -1858,6 +1900,11 @@
         if (!isOpen) {
           menu.toggle.setAttribute("aria-expanded", "true");
           menu.submenu.classList.add("open");
+          if (window.matchMedia("(max-width: 768px)").matches) {
+            menu.submenu.style.setProperty("display", "block", "important");
+          } else {
+            menu.submenu.style.removeProperty("display");
+          }
         }
       });
 
