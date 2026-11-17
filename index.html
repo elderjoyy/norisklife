@@ -1501,10 +1501,11 @@
             <span>I agree that NORISKLIFE may use the details I provide to respond to this enquiry and contact me about the subject selected. I have read the Privacy Policy. I understand that submitting this form does not require me to purchase an insurance product.</span>
           </label>
           <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-10000px;width:1px;height:1px;">
-          <button class="button button-primary contact-submit" type="submit">Submit Enquiry</button>
-          <p class="contact-form-footnote">After submitting, please check your email for an acknowledgement. Do not enter medical details, policy numbers, identity documents or financial account information.</p>
+          <button class="button button-primary contact-submit" id="contactSubmit" type="submit">Submit Enquiry</button>
+          <p class="contact-form-status" id="contactFormStatus" role="status" aria-live="polite" hidden></p>
+          <p class="contact-form-footnote">After submitting, please check your email for an acknowledgement. If you do not receive one, please contact NORISKLIFE using the contact details published on this website. Do not enter medical details, policy numbers, identity documents or financial account information.</p>
         </form>
-        <iframe name="norisklifeResponseFrame" title="Enquiry response" hidden></iframe>
+        <iframe name="norisklifeResponseFrame" id="norisklifeResponseFrame" title="Enquiry response" hidden></iframe>
       </div>
       <a href="#knowledge" class="button button-outline contact-knowledge-link">Explore the Knowledge Centre</a>
     </div>
@@ -1868,6 +1869,50 @@
         ". Existing premiums alone are " + formatINR.format(existing) +
         ". Review your full household budget before making a decision.";
       result.classList.add("visible");
+    });
+  })();
+</script>
+
+
+<script>
+  (function () {
+    const form = document.getElementById("contactForm");
+    const frame = document.getElementById("norisklifeResponseFrame");
+    const button = document.getElementById("contactSubmit");
+    const status = document.getElementById("contactFormStatus");
+    if (!form || !frame || !button || !status) return;
+
+    let waitingForResponse = false;
+    let responseTimer;
+
+    form.addEventListener("submit", function () {
+      waitingForResponse = true;
+      button.disabled = true;
+      button.textContent = "Submitting...";
+      status.hidden = false;
+      status.textContent = "Submitting your enquiry. Please wait...";
+      status.style.color = "#5D5037";
+
+      window.clearTimeout(responseTimer);
+      responseTimer = window.setTimeout(function () {
+        if (!waitingForResponse) return;
+        status.textContent = "Your enquiry is taking longer than expected. Please check your email for an acknowledgement before trying again, so you do not send a duplicate enquiry.";
+        button.disabled = false;
+        button.textContent = "Submit Enquiry";
+        waitingForResponse = false;
+      }, 20000);
+    });
+
+    frame.addEventListener("load", function () {
+      if (!waitingForResponse) return;
+      waitingForResponse = false;
+      window.clearTimeout(responseTimer);
+      button.disabled = false;
+      button.textContent = "Submit Enquiry";
+      status.hidden = false;
+      status.textContent = "Thank you. Your enquiry has been sent from this page. Please check your email for an acknowledgement. If you do not receive one, please contact NORISKLIFE using the contact details published on this website.";
+      status.style.color = "#087F65";
+      status.scrollIntoView({ behavior: "smooth", block: "nearest" });
     });
   })();
 </script>
