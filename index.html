@@ -760,8 +760,16 @@
 
     <nav aria-label="Main navigation">
       <a href="#">Home</a>
-      <a href="#solutions">Life Insurance</a>
-      <a href="#solutions">Health Insurance</a>
+      <div class="nav-dropdown">
+        <button type="button" class="nav-dropdown-toggle" id="insuranceMenuToggle" aria-expanded="false" aria-controls="insuranceSubmenu">
+          Insurance <span class="dropdown-chevron" aria-hidden="true">▾</span>
+        </button>
+        <div class="nav-submenu" id="insuranceSubmenu">
+          <a href="#life">Life Insurance</a>
+          <a href="#health">Health Insurance</a>
+        </div>
+      </div>
+      <a href="#for-corporates">For Corporates</a>
       <div class="nav-dropdown">
         <button type="button" class="nav-dropdown-toggle" id="toolsMenuToggle" aria-expanded="false" aria-controls="toolsSubmenu">
           Insurance Tools <span class="dropdown-chevron" aria-hidden="true">▾</span>
@@ -1313,6 +1321,129 @@
     </div>
   </section>
 
+  <section class="soft-section" id="for-corporates">
+    <div class="container">
+      <div class="section-heading">
+        <div class="eyebrow" style="color:#087F70">For employers and organisations</div>
+        <h2>Build a more insurance-aware workplace.</h2>
+        <p>
+          Help your employees understand life and health insurance through
+          practical awareness sessions organised by your organisation in
+          collaboration with NORISKLIFE.
+        </p>
+      </div>
+
+      <div class="cards">
+        <article class="card">
+          <div class="card-icon" aria-hidden="true">▣</div>
+          <h3>Employee awareness workshops</h3>
+          <p>
+            Organise structured sessions that explain insurance fundamentals
+            in simple language, with time for employee questions and discussion.
+          </p>
+        </article>
+        <article class="card">
+          <div class="card-icon" aria-hidden="true">▤</div>
+          <h3>Understand workplace health cover</h3>
+          <p>
+            Help employees understand common features of group health insurance,
+            such as coverage limits, family cover, exclusions, waiting periods
+            and the importance of reading the policy documents.
+          </p>
+        </article>
+        <article class="card">
+          <div class="card-icon" aria-hidden="true">◎</div>
+          <h3>Make informed protection decisions</h3>
+          <p>
+            Encourage employees to review their personal and family protection
+            needs, identify questions and understand where employer cover may
+            differ from individual insurance.
+          </p>
+        </article>
+      </div>
+
+      <div class="feature-grid" style="margin-top:48px">
+        <div class="feature-copy">
+          <h2>What can the programme cover?</h2>
+          <p>
+            Sessions can be designed around your workforce, the benefits your
+            organisation provides and the topics employees want to understand.
+          </p>
+          <ul class="feature-list">
+            <li>Life insurance fundamentals and the role of term cover.</li>
+            <li>How to think about family responsibilities and protection needs.</li>
+            <li>Understanding employer-provided group health insurance.</li>
+            <li>Health insurance basics, exclusions, waiting periods and claims concepts.</li>
+            <li>Personal health cover and possible gaps in employer-provided cover.</li>
+            <li>Common insurance misconceptions and questions to ask before deciding.</li>
+          </ul>
+        </div>
+        <div class="feature-panel">
+          <h3>Designed around your employees</h3>
+          <p>
+            NORISKLIFE can collaborate with HR teams, employee engagement teams
+            and leadership to shape a session suited to the organisation's
+            objectives, employee profile and available time.
+          </p>
+          <ul class="feature-list">
+            <li>In-person awareness sessions at the workplace.</li>
+            <li>Online workshops and webinars.</li>
+            <li>Short awareness talks or longer interactive sessions.</li>
+            <li>Q&amp;A-led sessions based on employee questions.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section-heading" style="margin-top:58px;margin-bottom:28px">
+        <h2>How corporate collaboration works</h2>
+        <p>A straightforward process, planned together with your organisation.</p>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <h3>1. Share your interest</h3>
+          <p>Tell us about your organisation, approximate employee group size and the topics you would like to cover.</p>
+        </article>
+        <article class="card">
+          <h3>2. Plan the session</h3>
+          <p>Discuss the format, audience, preferred dates, duration and learning objectives with the NORISKLIFE team.</p>
+        </article>
+        <article class="card">
+          <h3>3. Conduct the programme</h3>
+          <p>Arrange the agreed awareness session and provide employees an opportunity to ask general insurance-related questions.</p>
+        </article>
+      </div>
+
+      <div class="guide-article" style="margin-top:28px">
+        <h3>Who can collaborate with NORISKLIFE?</h3>
+        <p>
+          Private companies, public sector organisations, startups, factories,
+          business groups, professional firms, educational institutions and
+          other employers interested in employee financial awareness can
+          enquire about a programme.
+        </p>
+        <h3>Our approach to employee education</h3>
+        <p>
+          The programme is intended for general awareness and education. It is
+          not a substitute for an employer's formal benefits communication,
+          the insurer's policy documents or individual professional advice.
+          Any discussion of specific insurance products, recommendations or
+          distribution will be handled separately and only within applicable
+          authorisations, appointments and regulatory requirements. No
+          employee is required to purchase a policy to participate in an
+          educational session.
+        </p>
+      </div>
+
+      <div style="text-align:center;margin-top:34px">
+        <h2 style="color:var(--navy);margin-bottom:12px">Interested in organising an employee insurance awareness programme?</h2>
+        <p style="max-width:700px;margin:0 auto 22px">
+          Connect with NORISKLIFE to discuss a customised session for your employees.
+        </p>
+        <a href="#contact" class="button button-primary">Discuss a Corporate Programme</a>
+      </div>
+    </div>
+  </section>
+
   <section class="cta-section" id="contact">
     <div class="container">
       <h2>Have questions about insurance?</h2>
@@ -1350,6 +1481,7 @@
                 <option value="">Select an area</option>
                 <option value="Life Insurance">Life Insurance</option>
                 <option value="Health Insurance">Health Insurance</option>
+                <option value="Corporate Employee Insurance Education Programme">Corporate Employee Insurance Education Programme</option>
                 <option value="General Information">General Information</option>
               </select>
             </div>
@@ -1488,6 +1620,7 @@
         <h4>Explore</h4>
         <a href="#life">Life Insurance</a>
         <a href="#health">Health Insurance</a>
+        <a href="#for-corporates">For Corporates</a>
         <a href="#tools">Insurance Tools</a>
         <a href="#knowledge">Knowledge Centre</a>
       </div>
@@ -1600,6 +1733,7 @@
 <script>
   (function () {
     const menus = [
+      { toggle: document.getElementById("insuranceMenuToggle"), submenu: document.getElementById("insuranceSubmenu") },
       { toggle: document.getElementById("toolsMenuToggle"), submenu: document.getElementById("toolsSubmenu") },
       { toggle: document.getElementById("aboutMenuToggle"), submenu: document.getElementById("aboutSubmenu") }
     ].filter(menu => menu.toggle && menu.submenu);
